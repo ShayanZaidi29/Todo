@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -21,7 +22,7 @@ const Navbar = () => {
     cursor: 'pointer',
     fontSize: '24px',
     display: 'block',
-    transition: 'transform 0.3s ease-in-out', // Add transition for rotation animation
+    transition: 'transform 0.6s ease-in-out', // Slow-motion for rotation animation
     transform: isMenuOpen ? 'rotate(90deg)' : 'rotate(0deg)', // Rotate when open
   };
 
@@ -38,16 +39,42 @@ const Navbar = () => {
   const linkStyle = {
     color: 'white',
     textDecoration: 'none',
-    marginLeft: '30px', // Space between hamburger menu and links
-    display: isMenuOpen ? 'block' : 'none',
+    marginRight: '50px', // Space between hamburger menu and links
+    display: 'block',
     position: 'absolute',
     top: '40px',
     backgroundColor: 'black',
     padding: '10px',
+    borderRadius: '5px', // Add border-radius for rounded corners
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Add a subtle box shadow for depth
+    transition: 'opacity 0.6s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out', // Add transitions for opacity, transform, background-color, and color
+    opacity: isMenuOpen ? 1 : 0, // Show links when open, hide when closed
+    transform: isMenuOpen ? 'translateY(0)' : 'translateY(-10px)', // Lift links slightly when menu is closed
   };
-
+  
+  // Add hover effect
+  linkStyle[':hover'] = {
+    backgroundColor: '#333', // Darken background on hover
+    color: 'white', // Change text color to white on hover
+  };
+  
+  // ... (rest of the code)
+  
+  // In the component, use a library like styled-components or Emotion to handle pseudo-classes
+  // Example with styled-components:
+  
+  
+  const StyledLink = styled(Link)`
+    ${linkStyle}
+  `;
+  
+  // Then use StyledLink in your component instead of Link:
+  // <StyledLink to="/" style={hamburgerIconStyle}>Home</StyledLink>
+  // <StyledLink to="/about" style={hamburgerIconStyle}>About</StyledLink>
+  // <StyledLink to="/contact" style={hamburgerIconStyle}>Contact Us</StyledLink>
+  
   const todoListStyle = {
-    marginRight: '1200px' 
+    marginRight: '1200px'
   };
 
   const searchContainerStyle = {
