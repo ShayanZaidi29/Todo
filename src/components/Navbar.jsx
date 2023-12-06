@@ -1,33 +1,37 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-// import SearchIcon from '@mui/icons-material/Search';
-
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const navbarStyle = {
     backgroundColor: 'black',
-    padding: '3px',
+    padding: '10px',
     color: 'white',
     display: 'flex',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    position: 'relative', // Added position relative
+    position: 'relative',
+    height: '60px',
   };
 
   const hamburgerStyle = {
     cursor: 'pointer',
     fontSize: '27px',
     marginRight: '10px',
-    zIndex: 1, // Ensure the hamburger is above other elements
-    transition: 'transform 0.3s ease-in-out', // Add transition for rotation animation
-    transform: isMenuOpen ? 'rotate(90deg)' : 'rotate(0deg)', // Rotate when open
+    zIndex: 1,
+    transition: 'transform 0.3s ease-in-out', // Changed the transition property
+    transform: isMenuOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+    transformOrigin: 'center', // Added transform origin to rotate at the center
   };
 
   const sidebarOpenStyle = {
     width: '200px',
+  };
+
+  const todoListStyle = {
+    marginRight: '1200px',
+    zIndex: 1,
   };
 
   const linkContainerStyle = {
@@ -37,13 +41,12 @@ const Navbar = () => {
     top: '60px',
     left: isMenuOpen ? '0' : '-200px',
     transition: 'left 0.6s ease-in-out',
-    zIndex: 0, // Ensure the links container is behind other elements
+    zIndex: 0,
     backgroundColor: 'black',
   };
 
   const linkStyle = {
     color: 'white',
-
     textDecoration: 'none',
     padding: '10px',
     transition: 'background-color 0.3s ease-in-out, color 0.3s ease-in-out',
@@ -59,27 +62,20 @@ const Navbar = () => {
     alignItems: 'center',
   };
 
-  const todoListStyle = {
-    marginRight: '1250px',
-    zIndex: 1, // Ensure the TodoList is above other elements
-  };
+ 
 
   const searchContainerStyle = {
     display: 'flex',
     alignItems: 'center',
-    marginLeft: 'auto', // Align the search bar to the right
-    marginRight: isMenuOpen ? '200px' : '5px', // Add margin-right only when the menu is open
-    transition: 'margin-right 0.3s ease-in-out', // Added transition for smooth movement
   };
-  
+
   const searchInputStyle = {
-    marginRight: '-25px',
     padding: '5px',
   };
 
   const searchIconStyle = {
-    fill: isMenuOpen ? 'black' : 'black', // Change icon color based on the menu state
-    width: '25px',
+    fill: isMenuOpen ? 'black' : 'white',
+    width: '30px',
     height: '25px',
     cursor: 'pointer',
   };
@@ -91,20 +87,8 @@ const Navbar = () => {
   return (
     <div>
       <div style={navbarStyle}>
-        <div style={{ ...hamburgerStyle, ...isMenuOpen && sidebarOpenStyle }} onClick={toggleMenu}>
-          &#9776; {/* Hamburger icon */}
-        </div>
-
-        <div style={linkContainerStyle}>
-          <Link to="/" style={linkStyle} onClick={toggleMenu}>
-            Home
-          </Link>
-          <Link to="/about" style={linkStyle} onClick={toggleMenu}>
-            About
-          </Link>
-          <Link to="/contact" style={linkStyle} onClick={toggleMenu}>
-            Contact Us
-          </Link>
+        <div style={hamburgerStyle} onClick={toggleMenu}>
+          &#9776;
         </div>
 
         <div style={contentContainerStyle}>
@@ -119,6 +103,18 @@ const Navbar = () => {
             </svg>
           </div>
         </div>
+      </div>
+
+      <div style={linkContainerStyle}>
+        <Link to="/" style={linkStyle} onClick={toggleMenu}>
+          Home
+        </Link>
+        <Link to="/about" style={linkStyle} onClick={toggleMenu}>
+          About
+        </Link>
+        <Link to="/contact" style={linkStyle} onClick={toggleMenu}>
+          Contact Us
+        </Link>
       </div>
     </div>
   );
