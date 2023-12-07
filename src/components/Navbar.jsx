@@ -106,13 +106,13 @@ const Navbar = () => {
       </div>
 
       <div style={linkContainerStyle}>
-        <Link to="/" style={linkStyle} onClick={toggleMenu}>
+        <Link to="/Home" style={linkStyle} onClick={toggleMenu}>
           Home
         </Link>
-        <Link to="/about" style={linkStyle} onClick={toggleMenu}>
+        <Link to="/Footer" style={linkStyle} onClick={toggleMenu}>
           About
         </Link>
-        <Link to="/contact" style={linkStyle} onClick={toggleMenu}>
+        <Link to="/Contact" style={linkStyle} onClick={toggleMenu}>
           Contact Us
         </Link>
       </div>
