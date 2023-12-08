@@ -1,16 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Home = () => {
+const TodoList = () => {
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState('');
+
+  const handleInputChange = (e) => {
+    setNewTask(e.target.value);
+  };
+
+  const addTask = () => {
+    if (newTask.trim() !== '') {
+      setTasks([...tasks, newTask]);
+      setNewTask('');
+    }
+  };
+
+  const removeTask = (index) => {
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+  };
+
   return (
-    <div style={{ fontFamily: 'Arial, sans-serif', textAlign: 'center', padding: '300px', backgroundColor: '#808080' }}>
-      <h1 style={{ color: '#fff' }}>Add your tasks here</h1>
-      <div style={{ marginTop: '30px' }}>
-        <a href="/task-modal" style={{ display: 'inline-block', padding: '15px 30px', backgroundColor: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '4px', fontSize: '18px', margin: '0 10px' }}>
-          Add Task
-        </a>
+    <div style={{ maxWidth: '400px', margin: 'auto', marginTop: '20px', minHeight: '600px' }}>
+      <h2>Todo List</h2>
+
+      <div style={{ display: 'flex', marginBottom: '10px' }}>
+        <input
+          type="text"
+          placeholder="Add a new task"
+          value={newTask}
+          onChange={handleInputChange}
+          style={{ flex: '1', marginRight: '10px' }}
+        />
+        <button onClick={addTask}>Add</button>
       </div>
+
+      <ul style={{ listStyle: 'none', padding: '0' }}>
+        {tasks.map((task, index) => (
+          <li key={index} style={{ marginBottom: '5px', display: 'flex', alignItems: 'center' }}>
+            {task}
+            <span
+              style={{ marginLeft: '10px', cursor: 'pointer' }}
+              onClick={() => removeTask(index)}
+              role="img"
+              aria-label="delete"
+            >
+              🗑️
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default Home;
+export default TodoList;

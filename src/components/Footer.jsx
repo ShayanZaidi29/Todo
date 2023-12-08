@@ -12,7 +12,7 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 
 export default function App() {
   return (
-    <MDBFooter className='bg-dark text-center text-white'>
+    <MDBFooter id="footer" className='bg-dark text-center text-white'>
       <MDBContainer className='p-4'>
         <MDBRow>
           <MDBCol size='12' className='mb-4'>

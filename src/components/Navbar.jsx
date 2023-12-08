@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
+
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -70,12 +72,12 @@ const Navbar = () => {
   };
 
   const searchInputStyle = {
-    padding: '5px',
+    padding: '3px',
   };
 
   const searchIconStyle = {
     fill: isMenuOpen ? 'black' : 'white',
-    width: '30px',
+    width: '20px',
     height: '25px',
     cursor: 'pointer',
   };
@@ -112,9 +114,10 @@ const Navbar = () => {
         <Link to="/Footer" style={linkStyle} onClick={toggleMenu}>
           About
         </Link>
-        <Link to="/Contact" style={linkStyle} onClick={toggleMenu}>
-          Contact Us
-        </Link>
+        <ScrollLink to="footer" spy={true} smooth={true} duration={500} style={linkStyle} onClick={toggleMenu}>
+  Contact Us
+</ScrollLink>
+
       </div>
     </div>
   );
