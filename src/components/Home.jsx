@@ -8,6 +8,12 @@ const TodoList = () => {
     setNewTask(e.target.value);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      addTask();
+    }
+  };
+
   const addTask = () => {
     if (newTask.trim() !== '') {
       setTasks([...tasks, newTask]);
@@ -30,6 +36,7 @@ const TodoList = () => {
           placeholder="Add a new task"
           value={newTask}
           onChange={handleInputChange}
+          onKeyPress={handleKeyPress}
           style={{ flex: '1', marginRight: '10px' }}
         />
         <button onClick={addTask}>Add</button>

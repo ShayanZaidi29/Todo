@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 
-
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -15,6 +14,7 @@ const Navbar = () => {
     alignItems: 'center',
     position: 'relative',
     height: '60px',
+    width: '1600px'
   };
 
   const hamburgerStyle = {
@@ -22,18 +22,21 @@ const Navbar = () => {
     fontSize: '27px',
     marginRight: '10px',
     zIndex: 1,
-    transition: 'transform 0.3s ease-in-out', // Changed the transition property
+    transition: 'transform 0.3s ease-in-out', 
     transform: isMenuOpen ? 'rotate(90deg)' : 'rotate(0deg)',
-    transformOrigin: 'center', // Added transform origin to rotate at the center
+    transformOrigin: 'center',
   };
 
   const sidebarOpenStyle = {
     width: '200px',
+    backgroundColor: '#222', // Added background color
+    transition: 'background-color 0.3s ease-in-out', // Added color change animation
   };
 
   const todoListStyle = {
-    marginRight: '1200px',
+    marginRight: '1550px', // Adjusted the margin
     zIndex: 1,
+    height: '25px'
   };
 
   const linkContainerStyle = {
@@ -64,23 +67,6 @@ const Navbar = () => {
     alignItems: 'center',
   };
 
- 
-
-  const searchContainerStyle = {
-    display: 'flex',
-    alignItems: 'center',
-  };
-
-  const searchInputStyle = {
-    padding: '3px',
-  };
-
-  const searchIconStyle = {
-    fill: isMenuOpen ? 'black' : 'white',
-    width: '20px',
-    height: '25px',
-    cursor: 'pointer',
-  };
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -97,17 +83,10 @@ const Navbar = () => {
           <div style={todoListStyle}>
             <p>TodoList</p>
           </div>
-
-          <div style={searchContainerStyle}>
-            <input type="text" placeholder="Search" style={searchInputStyle} />
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={searchIconStyle}>
-              <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25L20.71 18l-4.25-4.25zM8 14a5 5 0 1 1 0-10 5 5 0 0 1 0 10z" />
-            </svg>
-          </div>
         </div>
       </div>
 
-      <div style={linkContainerStyle}>
+      <div style={isMenuOpen ? { ...linkContainerStyle, ...sidebarOpenStyle } : linkContainerStyle}>
         <Link to="/Home" style={linkStyle} onClick={toggleMenu}>
           Home
         </Link>
@@ -115,9 +94,8 @@ const Navbar = () => {
           About
         </Link>
         <ScrollLink to="footer" spy={true} smooth={true} duration={500} style={linkStyle} onClick={toggleMenu}>
-  Contact Us
-</ScrollLink>
-
+          Contact Us
+        </ScrollLink>
       </div>
     </div>
   );
